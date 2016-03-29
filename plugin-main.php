@@ -22,18 +22,17 @@ $forum_db_version = '1.0';
 function db_install() {
 
   global $wpdb;
-  global $jal_db_version;
+  global $forum_db_version;
 
   $table_name = $wpdb->prefix . 'forum_topic_reply';
   
   $charset_collate = $wpdb->get_charset_collate();
 
   $sql = "CREATE TABLE $table_name (
-    id int(50) NOT NULL AUTO_INCREMENT,
+    id int(50) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     topic_id int(50) NOT NULL,
     user_id int(50) NOT NULL,
-    replies text NOT NULL,
-    UNIQUE KEY id (id)
+    replies text NOT NULL
   ) $charset_collate;";
 
   require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -42,7 +41,7 @@ function db_install() {
 
   add_option( 'forum_db_version', $forum_db_version );
 }
-register_activation_hook( __FILE__, 'jal_install' );
+register_activation_hook( __FILE__, 'db_install' );
 
 
 /*
