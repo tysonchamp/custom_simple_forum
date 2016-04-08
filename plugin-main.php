@@ -291,10 +291,20 @@ class forum_topic_replies
   public static function enqueue_style()
   {
     wp_register_style(
-      't5_demo_css',
-      plugins_url( 'custom-plugin.css', __FILE__ )
+      'bootstrap_min_css',
+      plugins_url( 'css/bootstrap.min.css', __FILE__ )
     );
-    wp_enqueue_style( 't5_demo_css' );
+    wp_enqueue_style( 'bootstrap_min_css' );
+    wp_register_style(
+      'bootstrap_datatable_css',
+      plugins_url( 'css/dataTables.bootstrap.css', __FILE__ )
+    );
+    wp_enqueue_style( 'bootstrap_datatable_css' );
+    wp_register_style(
+      'plugin_style_css',
+      plugins_url( 'css/pf_style.css', __FILE__ )
+    );
+    wp_enqueue_style( 'plugin_style_css' );
   }
   
   /**
@@ -305,14 +315,37 @@ class forum_topic_replies
   public static function enqueue_script()
   {
     wp_register_script(
-      't5_demo_js',
-      plugins_url( 'custom-plugin.js', __FILE__ ),
+      'jquery_min_js',
+      plugins_url( 'js/jQuery-2.1.4.min.js', __FILE__ ),
       array(),
       FALSE,
       TRUE
     );
-    wp_enqueue_script( 't5_demo_js' );
-    add_action( 'admin_head', 'wp_tiny_mce' );
+    wp_enqueue_script( 'jquery_min_js' );
+    wp_register_script(
+      'bootstrap_min_js',
+      plugins_url( 'js/bootstrap.min.js', __FILE__ ),
+      array(),
+      FALSE,
+      TRUE
+    );
+    wp_enqueue_script( 'bootstrap_min_js' );
+    wp_register_script(
+      'jdatatable_min_js',
+      plugins_url( 'js/jquery.dataTables.min.js', __FILE__ ),
+      array(),
+      FALSE,
+      TRUE
+    );
+    wp_enqueue_script( 'jdatatable_min_js' );
+    wp_register_script(
+      'datatable_min_js',
+      plugins_url( 'js/dataTables.bootstrap.min.js', __FILE__ ),
+      array(),
+      FALSE,
+      TRUE
+    );
+    wp_enqueue_script( 'datatable_min_js' );
   }
   
 }
